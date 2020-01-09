@@ -1,0 +1,1 @@
+{"version":3,"file":"registerCommandByTriggers.js","sourceRoot":"","sources":["../../src/utils/registerCommandByTriggers.ts"],"names":[],"mappings":";;AAEA,SAAgB,yBAAyB,CACrC,KAAY,EACZ,QAAkB,EAClB,OAAqD;IAErD,KAAK,MAAM,OAAO,IAAI,QAAQ,EAAE;QAC5B,KAAK,CAAC,OAAO,CAAC,OAAO,EAAE,OAAO,CAAC,CAAC;KACnC;AACL,CAAC;AARD,8DAQC"}

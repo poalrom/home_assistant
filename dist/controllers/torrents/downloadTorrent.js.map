@@ -1,0 +1,1 @@
+{"version":3,"file":"downloadTorrent.js","sourceRoot":"","sources":["../../../src/controllers/torrents/downloadTorrent.ts"],"names":[],"mappings":";;AAAA,qDAAkD;AAElD,SAAgB,eAAe,CAAC,GAAW;IACvC,OAAO,aAAK,CAAC,YAAY,CAAC,GAAG,EAAE,SAAS,CAAC,CAAC;AAC9C,CAAC;AAFD,0CAEC"}
