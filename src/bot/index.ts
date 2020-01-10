@@ -26,16 +26,17 @@ bot.on("text", function (ctx) {
 });
 
 export function startBot() {
-    launchBot();
     console.log("Start bot");
+    launchBot();
 }
 
 async function launchBot() {
     try {
         await connectToDb();
         await bot.launch();
+        console.log("Bot started");
     } catch (e) {
         console.error("Connection error", e);
-        launchBot();
+        await launchBot();
     }
 }

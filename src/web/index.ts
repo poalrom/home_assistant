@@ -11,7 +11,11 @@ const app = App();
 app
     .use(cors({ origin: "*", }))
     .use(bodyParser.json())
-    .use("/films", filmsRouter);
+    .use("/films", filmsRouter)
+    .all("*", (req, res) => {
+        console.log(req.headers);
+        res.send("");
+    });
 
 export function startWeb() {
     return connectToDb().then(() => {
