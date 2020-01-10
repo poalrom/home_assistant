@@ -7,11 +7,7 @@ import { cancel } from "./cancel";
 import { connectToDb } from "../modules/db/connectToDb";
 import { parseRutrackerAnswer } from "./parse-rutracker-answer";
 
-const bot = new Telegraf(process.env.BOT_TOKEN, {
-    telegram: {
-        agent: proxy,
-    }
-});
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.use(accessControl).use(session());
 
