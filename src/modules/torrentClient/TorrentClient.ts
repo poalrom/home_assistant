@@ -54,16 +54,16 @@ class QbitTorrentClient {
     }
 }
 
-let torrentClient: QbitTorrentClient;
+const torrentClients: Record<string, QbitTorrentClient> = {};
 
 export async function getTorrentClient(port: string) {
-    if (!torrentClient) {
-        torrentClient = new QbitTorrentClient(port);
+    if (!torrentClients[port]) {
+        torrentClients[port] = new QbitTorrentClient(port);
     }
 
-    if (!torrentClient.isAuthorized) {
-        await torrentClient.auth();
+    if (!torrentClients[port].isAuthorized) {
+        await torrentClients[port].auth();
     }
 
-    return torrentClient;
+    return torrentClients[port];
 }
