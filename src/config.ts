@@ -7,7 +7,7 @@ export const config = {
     proxyUser: process.env.LUMINATI_USER || "",
     proxyPassword: process.env.LUMINATI_PASSWORD || "",
     downloadPath: process.env.DOWNLOAD_PATH || "",
-    modes: process.env.MODES || "bot,schedule",
+    modes: process.env.MODES || "bot,mediahost",
     torrentClientUrl: process.env.TORRENT_CLIENT_URL || "",
 };
 
@@ -20,7 +20,7 @@ export function checkConfig() {
     if (!config.modes.length || config.modes.includes(APP_MODE.bot)) {
         assert.notEqual(config.botToken.length, 0, getErrorMessage("BOT_TOKEN"));
     }
-    if (!config.modes.length || config.modes.includes(APP_MODE.schedule)) {
+    if (!config.modes.length || config.modes.includes(APP_MODE.mediahost)) {
         assert.notEqual(config.proxyUser.length, 0, getErrorMessage("LUMINATI_USER"));
         assert.notEqual(config.proxyPassword.length, 0, getErrorMessage("LUMINATI_PASSWORD"));
         assert.notEqual(config.downloadPath.length, 0, getErrorMessage("DOWNLOAD_PATH"));

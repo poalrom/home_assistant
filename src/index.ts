@@ -2,7 +2,7 @@ import { env } from "./dotenv";
 env();
 
 import { startBot } from "./bot";
-import { schedule } from "./schedule";
+import { startMediahost } from "./mediahost";
 import { APP_MODE } from "./types/AppMode";
 import { checkConfig, config } from "./config";
 
@@ -14,6 +14,6 @@ if (modes.includes(APP_MODE.bot)) {
     startBot();
 }
 
-if (modes.includes(APP_MODE.schedule)) {
-    schedule();
+if (modes.includes(APP_MODE.mediahost)) {
+    startMediahost();
 }
