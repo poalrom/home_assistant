@@ -2,11 +2,12 @@ import fetch from "node-fetch";
 import { createWriteStream, existsSync } from "fs";
 import md5 from "md5";
 import { resolve } from "path";
+import { config } from "../../config";
 
 export class Files {
     static async downloadFile(url: string, ext: string) {
         const fileName = md5(url) + "." + ext;
-        const filePath = resolve(process.env.DOWNLOAD_PATH, fileName);
+        const filePath = resolve(config.downloadPath, fileName);
 
         console.log(`Download file ${filePath} from ${url}`);
 

@@ -5,8 +5,9 @@ import { accessControl } from "./access-control";
 import { cancel } from "./cancel";
 import { connectToDb } from "../modules/db/connectToDb";
 import { parseRutrackerAnswer } from "./parse-rutracker-answer";
+import { config } from "../config";
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Telegraf(config.botToken);
 
 bot.use(accessControl).use(session());
 

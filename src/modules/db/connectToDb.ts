@@ -1,5 +1,6 @@
 import { resolve } from "path";
 import { createConnection } from "typeorm";
+import { config } from "../../config";
 
 let connectionCreated = false;
 
@@ -11,10 +12,10 @@ export function connectToDb() {
 
     return createConnection({
         type: "mongodb",
-        url: process.env.TYPEORM_URL,
+        url: config.dbUrl,
         ssl: true,
-        logging: process.env.TYPEORM_LOGGING === "true",
-        synchronize: process.env.TYPEORM_SYNCHRONIZE === "true",
+        logging: true,
+        synchronize: true,
         entities: [resolve(__dirname, "../../", "models/*.js")],
         useUnifiedTopology: true,
         useNewUrlParser: true,

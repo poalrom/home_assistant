@@ -4,7 +4,7 @@ import FormData from "form-data";
 class QbitTorrentClient {
     private sid: string;
 
-    constructor(private port: string) {}
+    constructor(private url: string) {}
 
     get isAuthorized() {
         return !!this.sid;
@@ -15,11 +15,11 @@ class QbitTorrentClient {
         formData.append("urls", link);
 
         const addRequest = await fetch(
-            `http://localhost:${this.port}/api/v2/torrents/add`,
+            `${this.url}/api/v2/torrents/add`,
             {
                 method: "POST",
                 headers: {
-                    Referer: `http://localhost:${this.port}`,
+                    Referer: `${this.url}`,
                     Cookies: this.sid,
                 },
                 body: formData,
@@ -31,10 +31,10 @@ class QbitTorrentClient {
 
     async auth() {
         const authRequest = await fetch(
-            `http://localhost:${this.port}/api/v2/auth/login`,
+            `${this.url}/api/v2/auth/login`,
             {
                 headers: {
-                    Referer: `http://localhost:${this.port}`,
+                    Referer: `${this.url}`,
                 },
             },
         );
@@ -56,14 +56,14 @@ class QbitTorrentClient {
 
 const torrentClients: Record<string, QbitTorrentClient> = {};
 
-export async function getTorrentClient(port: string) {
-    if (!torrentClients[port]) {
-        torrentClients[port] = new QbitTorrentClient(port);
+export async function getTorrentClient(url: string) {
+    if (!torrentClients[url]) {
+        torrentClients[url] = new QbitTorrentClient(url);
     }
 
-    if (!torrentClients[port].isAuthorized) {
-        await torrentClients[port].auth();
+    if (!torrentClients[url].isAuthorized) {
+        await torrentClients[url].auth();
     }
 
-    return torrentClients[port];
+    return torrentClients[url];
 }

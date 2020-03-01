@@ -2,6 +2,7 @@ import { Entity, Column, BaseEntity, ObjectID, ObjectIdColumn } from "typeorm";
 import { DownloadStatus } from "../types/DownloadStatus";
 import { Files } from "../modules/files/files";
 import { getTorrentClient } from "../modules/torrentClient/TorrentClient";
+import { config } from "../config";
 
 @Entity()
 export class Torrent extends BaseEntity {
@@ -50,7 +51,7 @@ export class Torrent extends BaseEntity {
     }
 
     private async downloadMagnet() {
-        const torrentClient = await getTorrentClient(process.env.TORRENT_CLIENT_PORT || "");
+        const torrentClient = await getTorrentClient(config.torrentClientUrl);
 
         try {
             await torrentClient.addMagnet(this.url);

@@ -3,18 +3,17 @@ env();
 
 import { startBot } from "./bot";
 import { schedule } from "./schedule";
+import { APP_MODE } from "./types/AppMode";
+import { checkConfig, config } from "./config";
 
-enum APP_MODES {
-    bot = "bot",
-    schedule = "schedule",
-}
+checkConfig();
 
-const modes = (process.env.MODES || "web,bot,schedule").split(",");
+const modes = config.modes.split(",");
 
-if (modes.includes(APP_MODES.bot)) {
+if (modes.includes(APP_MODE.bot)) {
     startBot();
 }
 
-if (modes.includes(APP_MODES.schedule)) {
+if (modes.includes(APP_MODE.schedule)) {
     schedule();
 }
