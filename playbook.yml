@@ -1,0 +1,40 @@
+- hosts: 127.0.0.1
+  connection: local
+  vars:
+    bot_dest: /home/automation
+    domain: poalrom.tk
+  tasks:
+    - name: Install nodejs
+      shell: |
+        curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && sudo apt-get install -y nodejs
+
+    - name: Install http
+      apt:
+        pkg:
+          - nginx
+          - certbot
+          - python-certbot-nginx
+          - mosquitto
+          - nodejs
+
+    - name: Install home automation bot
+      git:
+        repo: https://github.com/poalrom/home_assistant.git
+        dest: "{{ bot_dest }}"
+
+    - name: Install home automation bot packages
+      npm:
+        path: "{{ bot_dest }}"
+
+    - name: Build home automation bot
+      command: npm run build
+      args:
+        chdir: "{{ bot_dest }}"
+
+    - name: Create SSL cert for MQTT
+      command: |
+        "certbot certonly --standalone --standalone-supported-challenges http-01 -d mqtt.{{ domain }} -n"
+
+    - name: Schedule renew SSL certs
+      command: |
+        "echo 15 3 * * * certbot renew --noninteractive --post-hook \"systemctl restart mosquitto\" >> "
