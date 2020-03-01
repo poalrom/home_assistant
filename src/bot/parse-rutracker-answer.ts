@@ -1,6 +1,5 @@
 import Telegraf, { ContextMessageUpdate } from "telegraf";
 import { Torrent } from "../models/Torrent";
-import { BotUserMode } from "../types/BotUserMode";
 
 export function parseRutrackerAnswer(bot: Telegraf<ContextMessageUpdate>) {
     bot.on("message", async (ctx, next) => {

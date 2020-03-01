@@ -1,5 +1,4 @@
 import Telegraf, { session } from "telegraf";
-import { proxy } from "../modules/proxy/proxy";
 import { add } from "./add";
 import { help } from "./help";
 import { accessControl } from "./access-control";

@@ -22,7 +22,6 @@ class QbitTorrentClient {
                     Referer: `http://localhost:${this.port}`,
                     Cookies: this.sid,
                 },
-                // @ts-ignore
                 body: formData,
             },
         );

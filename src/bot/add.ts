@@ -1,6 +1,5 @@
 import Telegraf, { ContextMessageUpdate } from "telegraf";
 import { BotUserMode } from "../types/BotUserMode";
-import { Files } from "../modules/files/files";
 import { Torrent } from "../models/Torrent";
 
 export function add(bot: Telegraf<ContextMessageUpdate>) {
