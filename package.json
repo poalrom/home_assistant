@@ -24,7 +24,7 @@
         "form-data": "^3.0.0",
         "https-proxy-agent": "^4.0.0",
         "md5": "^2.2.1",
-        "mongodb": "^3.4.1",
+        "mysql": "^2.18.1",
         "node-fetch": "^2.6.0",
         "telegraf": "^3.35.0",
         "typeorm": "^0.2.22"

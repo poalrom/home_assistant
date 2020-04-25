@@ -11,13 +11,14 @@ export function connectToDb() {
     }
 
     return createConnection({
-        type: "mongodb",
-        url: config.dbUrl,
-        ssl: true,
+        type: "mysql",
+        host: config.db.host,
+        port: config.db.port,
+        database: config.db.name,
+        username: config.db.user,
+        password: config.db.password,
         logging: true,
         synchronize: true,
         entities: [resolve(__dirname, "../../", "models/*.js")],
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
     }).then(() => connectionCreated = true);
 }

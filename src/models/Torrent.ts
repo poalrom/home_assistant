@@ -1,4 +1,4 @@
-import { Entity, Column, BaseEntity, ObjectID, ObjectIdColumn } from "typeorm";
+import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from "typeorm";
 import { DownloadStatus } from "../types/DownloadStatus";
 import { Files } from "../modules/files/files";
 import { getTorrentClient } from "../modules/torrentClient/TorrentClient";
@@ -7,16 +7,16 @@ import { config } from "../config";
 @Entity()
 export class Torrent extends BaseEntity {
 
-    @ObjectIdColumn()
-    id: ObjectID;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
     url: string;
 
-    @Column()
+    @Column({ nullable: true })
     errorMessage: string;
 
-    @Column()
+    @Column({ default: DownloadStatus.EMPTY })
     status: DownloadStatus = DownloadStatus.EMPTY;
 
     static async downloadAll() {
