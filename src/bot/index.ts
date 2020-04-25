@@ -11,11 +11,12 @@ const bot = new Telegraf(config.botToken);
 
 bot.use(accessControl).use(session());
 
+bot.command("cancel", cancel);
+bot.help(help);
+
 add(bot);
 parseRutrackerAnswer(bot);
 
-bot.help(help);
-bot.command("cancel", cancel);
 
 bot.on("text", function (ctx) {
     ctx.reply("Моя твоя не понимать. Может /help ?");
