@@ -1,9 +1,9 @@
 import { ContextMessageUpdate } from "telegraf";
 
-const acceptedUsers = ["poalrom"];
+const acceptedUsers = ["poalrom", "banfreya"];
 
 export function accessControl(ctx: ContextMessageUpdate, next: () => any) {
-    if (!acceptedUsers.includes(ctx.from.username)) {
+    if (!acceptedUsers.includes(ctx.from.username.toLocaleLowerCase())) {
         ctx.reply("Вы кто такие? Я вас не звал!");
         return;
     }
