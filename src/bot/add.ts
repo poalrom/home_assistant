@@ -1,8 +1,8 @@
-import Telegraf, { ContextMessageUpdate } from "telegraf";
+import Telegraf, { TelegrafContext } from "telegraf";
 import { BotUserMode } from "../types/BotUserMode";
 import { Torrent } from "../models/Torrent";
 
-export function add(bot: Telegraf<ContextMessageUpdate>) {
+export function add(bot: Telegraf<TelegrafContext>) {
     bot.command("add", (ctx) => {
         ctx.session.mode = BotUserMode.add;
 

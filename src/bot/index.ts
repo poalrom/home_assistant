@@ -1,39 +1,34 @@
-import Telegraf, { session } from "telegraf";
-import { add } from "./add";
-import { help } from "./help";
+import { Express } from "express";
 import { accessControl } from "./access-control";
-import { cancel } from "./cancel";
-import { connectToDb } from "../modules/db/connectToDb";
-import { parseRutrackerAnswer } from "./parse-rutracker-answer";
 import { config } from "../config";
+import Telegraf, { session, Stage } from "telegraf";
+import { dump } from "./dump";
+import { help } from "./help";
+import { parseRutrackerAnswer } from "./scenarios/parse-rutracker-answer";
+import { addTorrentScene } from "./scenarios/add-torrent";
 
-const bot = new Telegraf(config.botToken);
+const bot = new Telegraf(config.bot.token);
 
-bot.use(accessControl).use(session());
+bot.webhookReply = true;
 
-bot.command("cancel", cancel);
-bot.help(help);
+const stage = new Stage([
+    addTorrentScene.scene
+]);
 
-add(bot);
-parseRutrackerAnswer(bot);
+stage.command(addTorrentScene.command, (ctx) => ctx.scene.enter(addTorrentScene.id));
 
+stage.command("cancel", Stage.leave());
 
-bot.on("text", function (ctx) {
-    ctx.reply("Моя твоя не понимать. Может /help ?");
-});
+bot.use(accessControl)
+    .use(session())
+    .use(stage.middleware())
+    .on("message", parseRutrackerAnswer)
+    .help(help);
 
-export function startBot() {
-    console.log("Start bot");
-    launchBot();
-}
+bot.on("message", dump);
 
-async function launchBot() {
-    try {
-        await connectToDb();
-        await bot.launch();
-        console.log("Bot started");
-    } catch (e) {
-        console.error("Connection error", e);
-        await launchBot();
-    }
+export function startBot(app: Express) {
+    app.post(config.bot.secretPath, async (req, res) => {
+        await bot.handleUpdate(req.body, res);
+    });
 }

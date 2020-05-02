@@ -10,7 +10,7 @@ export class Torrent extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ type: "text" })
     url: string;
 
     @Column({ nullable: true })
