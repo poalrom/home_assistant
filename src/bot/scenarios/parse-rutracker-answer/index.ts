@@ -1,8 +1,8 @@
-import { TelegrafContext } from "telegraf";
+import { Context } from "telegraf";
 import { Torrent } from "../../../models/Torrent";
 import { NextFunction } from "express";
 
-export async function parseRutrackerAnswer(ctx: TelegrafContext, next: NextFunction) {
+export async function parseRutrackerAnswer(ctx: Context, next: NextFunction) {
     if (!ctx.message.forward_from || ctx.message.forward_from.username !== "ru_tracker_bot") {
         return next();
     }
@@ -16,7 +16,7 @@ export async function parseRutrackerAnswer(ctx: TelegrafContext, next: NextFunct
     } catch (e) {
         ctx.replyWithMarkdown(`Произошла ошибка:\n\`\`\`${e}\`\`\``);
     } finally {
-        ctx.session.mode = undefined;
+        next();
     }
 }
 

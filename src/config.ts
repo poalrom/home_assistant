@@ -14,6 +14,9 @@ export const config = {
         secretPath: process.env.BOT_SECRET_PATH || "",
         token: process.env.BOT_TOKEN || "",
     },
+    alice: {
+        secretPath: process.env.ALICE_SECRET_PATH || "",
+    },
     proxyUser: process.env.PROXY_USER || "",
     proxyPassword: process.env.PROXY_PASSWORD || "",
     downloadPath: process.env.DOWNLOAD_PATH || "",
@@ -40,6 +43,9 @@ export function checkConfig() {
     if (!config.modes.length || config.modes.includes(APP_MODE.bot)) {
         assert.notEqual(config.bot.secretPath.length, 0, getErrorMessage("BOT_SECRET_PATH"));
         assert.notEqual(config.bot.token.length, 0, getErrorMessage("BOT_TOKEN"));
+    }
+    if (!config.modes.length || config.modes.includes(APP_MODE.bot)) {
+        assert.notEqual(config.alice.secretPath.length, 0, getErrorMessage("ALICE_SECRET_PATH"));
     }
     if (!config.modes.length || config.modes.includes(APP_MODE.mediahost)) {
         assert.notEqual(config.proxyUser.length, 0, getErrorMessage("PROXY_USER"));

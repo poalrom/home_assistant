@@ -6,7 +6,7 @@
     "scripts": {
         "build": "tsc",
         "dev": "tsc-watch --onSuccess \"node ./dist/index.js\" --onFailure \"echo Beep! Compilation Failed\"",
-        "start": "node ./dist/index.js"
+        "start": "node --inspect ./dist/index.js"
     },
     "author": "",
     "license": "ISC",
@@ -22,7 +22,8 @@
         "node-fetch": "^2.6.0",
         "telegraf": "^3.38.0",
         "typeorm": "^0.2.24",
-        "wol": "^1.0.7"
+        "wol": "^1.0.7",
+        "yandex-dialogs-sdk": "^2.3.0"
     },
     "devDependencies": {
         "@types/cors": "^2.8.6",

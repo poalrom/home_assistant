@@ -23,6 +23,7 @@ bot.use(accessControl)
     .use(session())
     .use(stage.middleware())
     .on("message", parseRutrackerAnswer)
+    .on("message", Stage.leave())
     .help(help);
 
 bot.on("message", dump);

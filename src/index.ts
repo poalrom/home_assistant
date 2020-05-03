@@ -7,6 +7,7 @@ import { startMediahost } from "./mediahost";
 import { APP_MODE } from "./types/AppMode";
 import { checkConfig, config } from "./config";
 import { connectToDb } from "./modules/db/connectToDb";
+import { startAlice } from "./alice";
 
 checkConfig();
 
@@ -19,6 +20,11 @@ app.use(json());
 if (modes.includes(APP_MODE.bot)) {
     startServer = true;
     startBot(app);
+}
+
+if (modes.includes(APP_MODE.alice)) {
+    startServer = true;
+    startAlice(app);
 }
 
 if (modes.includes(APP_MODE.mediahost)) {
