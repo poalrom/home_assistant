@@ -12,6 +12,7 @@ const humanPCNames = {
     main: "Алёши",
     secondary: "Светы",
     media: "с сериальчиками",
+    mediaScreen: "с сериальчиками",
 };
 
 export async function startPC(ctx: IIntentContext) {
@@ -24,6 +25,14 @@ export async function startPC(ctx: IIntentContext) {
     }
 
     await pcAdmin.start(config.pcMacAdresses[pcName]);
+    if (pcName === 'media') {
+        await pcAdmin.start(config.pcMacAdresses.mediaScreen);
+    }
 
-    return Reply.text("Включила компьютер " + humanPCNames[pcName]);
+    return Reply.text(
+        "Включила компьютер " + humanPCNames[pcName],
+        {
+            end_session: true,
+        }
+    );
 }

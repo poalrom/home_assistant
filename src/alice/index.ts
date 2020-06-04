@@ -11,6 +11,7 @@ alice.any(async (ctx) => {
 
 export function startAlice(app: Express) {
     app.post(config.alice.secretPath, async (req, res) => {
+        console.log(req.body);
         const answer = await alice.handleRequest(req.body);
         console.log(answer);
         res.json(answer);

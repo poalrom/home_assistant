@@ -26,6 +26,7 @@ export const config = {
         main: process.env.MAIN_MAC || "",
         secondary: process.env.SECONDARY_MAC || "",
         media: process.env.MEDIA_MAC || "",
+        mediaScreen: process.env.MEDIA_SCREEN_MAC || "",
     },
 };
 
