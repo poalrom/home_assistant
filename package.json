@@ -19,7 +19,7 @@
         "https-proxy-agent": "^4.0.0",
         "md5": "^2.2.1",
         "mysql": "^2.18.1",
-        "node-fetch": "^2.6.0",
+        "node-fetch": "^2.6.7",
         "telegraf": "^3.38.0",
         "typeorm": "^0.2.24",
         "wol": "^1.0.7",
